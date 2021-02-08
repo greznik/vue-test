@@ -1,18 +1,51 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <TheInput @input="onInput($event)" />
+    <TheList
+      :getPackageList="getPackageList"
+      :page="page"
+      @dialog="dialogInfo($event)"
+    />
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import TheInput from "@/components/TheInput.vue";
+import TheList from "@/components/TheList.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
-  name: 'Home',
+  name: "Home",
+  data() {
+    return {
+      inputValue: "",
+      page: 1,
+    };
+  },
   components: {
-    HelloWorld
-  }
-}
+    TheInput,
+    TheList,
+  },
+  methods: {
+    ...mapActions({
+      fetchPackageList: "fetchPackageList",
+      fetchDetailPackageList: "fetchDetailPackageList",
+    }),
+    onInput(value) {
+      this.inputValue = value;
+      this.fetchPackageList(value);
+    },
+    dialogInfo(version) {
+      this.inputValue;
+      const data = {
+        value: this.inputValue,
+        version
+      }
+      this.fetchDetailPackageList(data);
+    },
+  },
+  computed: {
+    ...mapGetters(["getPackageList"]),
+  },
+};
 </script>
