@@ -46,7 +46,6 @@ export default new Vuex.Store({
         const res = await axios.get(
           `https://data.jsdelivr.com/v1/package/npm/${value}@${version}`
         );
-        console.log("fetchDetailPackageList", res);
         commit("setDetailPackageList", res);
       } catch (e) {
         commit("setError", e);
