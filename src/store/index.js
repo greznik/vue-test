@@ -8,7 +8,7 @@ export default new Vuex.Store({
   state: {
     error: null,
     packageList: [],
-    detailNpm: {},
+    detailPackage: {},
   },
   mutations: {
     setError(state, error) {
@@ -20,12 +20,13 @@ export default new Vuex.Store({
     setPackageList(state, list) {
       state.packageList = list;
     },
-    setDetailPackageList(state, detailNpm) {
-      state.detailNpm = detailNpm;
+    setDetailPackageList(state, detailPackage) {
+      state.detailPackage = detailPackage;
     },
   },
   actions: {
     async fetchPackageList({ commit }, name) {
+      commit("clearError");
       try {
         const res = await axios.get(
           `https://data.jsdelivr.com/v1/package/npm/${name}`
@@ -39,10 +40,11 @@ export default new Vuex.Store({
         commit("setPackageList", []);
       }
     },
-    async fetchDetailPackageList({ commit }, { name, lastVersion }) {
+    async fetchDetailPackageList({ commit }, { value, version }) {
+      commit("clearError");
       try {
         const res = await axios.get(
-          `https://data.jsdelivr.com/v1/package/npm/${name}@${lastVersion}`
+          `https://data.jsdelivr.com/v1/package/npm/${value}@${version}`
         );
         console.log("fetchDetailPackageList", res);
         commit("setDetailPackageList", res);
@@ -54,5 +56,7 @@ export default new Vuex.Store({
   },
   getters: {
     getPackageList: (s) => s.packageList,
+    getDetailPackageList: (s) => s.detailPackage.data,
+    getError: (s) => s.error,
   },
 });

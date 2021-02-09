@@ -1,24 +1,25 @@
 <template>
   <div>
-    <div v-if="getPackageList">
+    <div v-if="getPackageList.length">
       <v-dialog v-model="dialog" max-width="500px">
         <v-card>
           <v-card-title>
-            <span class="headline">About</span>
+            <span class="headline"
+              >About
+              {{ getDetailPackageList && getDetailPackageList.default }}</span
+            >
           </v-card-title>
 
           <v-card-text>
             <v-container grid-list-md>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Debitis,
-              quidem. Amet inventore harum dignissimos veritatis, blanditiis
-              expedita voluptates quam veniam ea distinctio dolor ex ipsam sint
-              doloribus, iure, quos repudiandae?
+              По запросу нет дополнительной инфы, кроме названия пакетов,
+              поэтому представим, что у нас тут пришли данные о пакете:)
             </v-container>
           </v-card-text>
 
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="blue darken-1" @click="close">Cancel</v-btn>
+            <v-btn color="blue darken-1" @click="close">Close</v-btn>
           </v-card-actions>
         </v-card>
       </v-dialog>
@@ -29,7 +30,11 @@
       >
         <template v-slot:body="{ items }">
           <tbody>
-            <tr v-for="(item, key) in items" :key="key" @click="open(item.version)">
+            <tr
+              v-for="(item, key) in items"
+              :key="key"
+              @click="open(item.version)"
+            >
               <td>{{ item.version }}</td>
             </tr>
           </tbody>
@@ -47,6 +52,10 @@ export default {
       type: Array,
       default: () => [],
     },
+    getDetailPackageList: {
+      type: Object,
+      default: () => {},
+    },
   },
   data() {
     return {
@@ -63,8 +72,9 @@ export default {
   },
   methods: {
     open(item) {
-      this.dialog = true;
-      this.$emit("dialog", item );
+      this.$emit("dialog", item);
+      // immitate loading
+      setTimeout(() => (this.dialog = true), 1000);
     },
     close() {
       this.dialog = false;

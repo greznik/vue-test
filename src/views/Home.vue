@@ -1,7 +1,11 @@
 <template>
   <div class="home">
+    <v-alert :value="!!getError" dense border="left" type="warning">
+      {{ getError }}
+    </v-alert>
     <TheInput @input="onInput($event)" />
     <TheList
+      :getDetailPackageList="getDetailPackageList"
       :getPackageList="getPackageList"
       :page="page"
       @dialog="dialogInfo($event)"
@@ -31,21 +35,20 @@ export default {
       fetchPackageList: "fetchPackageList",
       fetchDetailPackageList: "fetchDetailPackageList",
     }),
-    onInput(value) {
+    async onInput(value) {
       this.inputValue = value;
-      this.fetchPackageList(value);
+      await this.fetchPackageList(value);
     },
-    dialogInfo(version) {
-      this.inputValue;
+    async dialogInfo(version) {
       const data = {
         value: this.inputValue,
-        version
-      }
-      this.fetchDetailPackageList(data);
+        version,
+      };
+      await this.fetchDetailPackageList(data);
     },
   },
   computed: {
-    ...mapGetters(["getPackageList"]),
+    ...mapGetters(["getDetailPackageList", "getPackageList", "getError"]),
   },
 };
 </script>
