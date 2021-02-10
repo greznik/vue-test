@@ -36,23 +36,15 @@ export default {
       fetchDetailPackageList: "fetchDetailPackageList",
     }),
     async onInput(value) {
-      try {
-        this.inputValue = value;
-        await this.fetchPackageList(value);
-      } catch (e) {
-        throw e;
-      }
+      this.inputValue = value;
+      await this.fetchPackageList(value);
     },
     async dialogInfo(version) {
-      try {
-        const data = {
-          value: this.inputValue,
-          version,
-        };
-        await this.fetchDetailPackageList(data);
-      } catch (e) {
-        throw e;
-      }
+      const data = {
+        value: this.inputValue,
+        version,
+      };
+      await this.fetchDetailPackageList(data);
     },
   },
   computed: {
