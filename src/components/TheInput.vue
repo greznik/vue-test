@@ -1,6 +1,7 @@
 <template>
   <v-text-field
     label="Name"
+    data-test="TheInput"
     required
     @input="updateValue($event)"
   ></v-text-field>

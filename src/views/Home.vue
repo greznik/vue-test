@@ -7,7 +7,6 @@
     <TheList
       :getDetailPackageList="getDetailPackageList"
       :getPackageList="getPackageList"
-      :page="page"
       @dialog="dialogInfo($event)"
     />
   </div>
@@ -23,7 +22,6 @@ export default {
   data() {
     return {
       inputValue: "",
-      page: 1,
     };
   },
   components: {

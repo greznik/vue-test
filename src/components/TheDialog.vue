@@ -1,5 +1,5 @@
 <template>
-  <v-dialog v-model="dialog" max-width="500px">
+  <v-dialog v-model="internalValue" max-width="500px">
     <v-card>
       <v-card-title>
         <span class="headline"
@@ -34,6 +34,16 @@ export default {
       type: Boolean,
       default: false,
       required: true,
+    },
+  },
+  computed: {
+    internalValue: {
+      get() {
+        return this.dialog;
+      },
+      set(value) {
+        this.$emit("close", value);
+      },
     },
   },
   methods: {
