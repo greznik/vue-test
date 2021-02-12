@@ -9,17 +9,20 @@
     <v-main>
       <Home />
     </v-main>
+    <TheFooter />
   </v-app>
 </template>
 
 <script>
 import Home from "./views/Home";
+import TheFooter from "./components/TheFooter";
 
 export default {
   name: "App",
 
   components: {
     Home,
+    TheFooter,
   },
 
   data: () => ({

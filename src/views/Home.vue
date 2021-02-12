@@ -1,14 +1,14 @@
 <template>
   <div class="home">
-    <v-alert :value="!!getError" dense border="left" type="warning">
-      {{ getError }}
-    </v-alert>
     <TheInput @input="onInput($event)" />
     <TheList
       :getDetailPackageList="getDetailPackageList"
       :getPackageList="getPackageList"
       @dialog="dialogInfo($event)"
     />
+    <v-alert :value="!!getError" color="orange" dense outlined type="warning">
+      {{ getError }}
+    </v-alert>
   </div>
 </template>
 
