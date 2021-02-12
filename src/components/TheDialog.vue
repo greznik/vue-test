@@ -3,7 +3,7 @@
     <v-card>
       <v-card-title>
         <span class="headline"
-          >About
+          >О пакете
           {{ getDetailPackageList && getDetailPackageList.default }}</span
         >
       </v-card-title>
@@ -17,7 +17,7 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="blue darken-1" @click="onClose">Close</v-btn>
+        <v-btn color="blue darken-1" @click="onClose">Закрыть</v-btn>
       </v-card-actions>
     </v-card>
   </v-dialog>

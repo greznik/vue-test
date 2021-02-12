@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        Search npm package
+        Поиск пакетов
       </div>
     </v-app-bar>
 

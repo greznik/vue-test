@@ -24,7 +24,7 @@
         </template>
       </v-data-table>
     </div>
-    <p class="text-center" v-else>Введите значение</p>
+    <p class="text-center" v-else>Введите значение для отображения результатов</p>
   </div>
 </template>
 
