@@ -2,7 +2,7 @@
   <v-app>
     <v-app-bar app color="primary" dark>
       <div class="d-flex align-center">
-        Search npm package version
+        Search npm package
       </div>
     </v-app-bar>
 
@@ -24,10 +24,6 @@ export default {
     Home,
     TheFooter,
   },
-
-  data: () => ({
-    //
-  }),
 };
 </script>
 <style lang="scss">
