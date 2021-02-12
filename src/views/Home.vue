@@ -34,8 +34,9 @@ export default {
       fetchDetailPackageList: "fetchDetailPackageList",
     }),
     async onInput(value) {
-      this.inputValue = value;
-      await this.fetchPackageList(value);
+      const lowerValue = value.toLowerCase()
+      this.inputValue = lowerValue;
+      await this.fetchPackageList(lowerValue);
     },
     async dialogInfo(version) {
       const data = {
