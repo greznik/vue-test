@@ -24,13 +24,16 @@
         </template>
       </v-data-table>
     </div>
-    <p class="text-center" v-else>Введите значение для отображения результатов</p>
+    <p class="text-center" v-else>
+      Введите значение для отображения результатов
+    </p>
   </div>
 </template>
 
 <script>
 import TheDialog from "@/components/TheDialog";
 export default {
+  name: "TheList",
   props: {
     getPackageList: {
       type: Array,

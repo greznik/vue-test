@@ -1,0 +1,9 @@
+// Mutations types
+export const SET_ERROR = "SET_ERROR";
+export const CLEAR_ERROR = "CLEAR_ERROR";
+export const SET_PACKAGE_LIST = "SET_PACKAGE_LIST";
+export const SET_DETAIL_PACKAGE_LIST = "SET_DETAIL_PACKAGE_LIST";
+
+// Actions types
+export const FETCH_PACKAGE_LIST = "FETCH_PACKAGE_LIST";
+export const FETCH_DETAIL_PACKAGE_LIST = "FETCH_DETAIL_PACKAGE_LIST";

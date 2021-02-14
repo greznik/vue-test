@@ -21,16 +21,19 @@
 
 <script>
 export default {
-  data: () => ({
-    date: new Date(),
-    interval: null,
-    icons: [
-      { icon: "mdi-github", url: "https://github.com/greznik" },
-      { icon: "mdi-linkedin", url: "https://www.linkedin.com/in/vue/" },
-      { icon: "mdi-steam", url: "https://steamcommunity.com/id/reznx/" },
-      { icon: "mdi-instagram", url: "https://www.instagram.com/donreznik/" },
-    ],
-  }),
+  name: "TheFooter",
+  data() {
+    return {
+      date: new Date(),
+      interval: null,
+      icons: [
+        { icon: "mdi-github", url: "https://github.com/greznik" },
+        { icon: "mdi-linkedin", url: "https://www.linkedin.com/in/vue/" },
+        { icon: "mdi-steam", url: "https://steamcommunity.com/id/reznx/" },
+        { icon: "mdi-instagram", url: "https://www.instagram.com/donreznik/" },
+      ],
+    };
+  },
   mounted() {
     this.interval = setInterval(() => {
       this.date = new Date();

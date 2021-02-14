@@ -9,6 +9,7 @@
 
 <script>
 export default {
+  name: "TheInput",
   methods: {
     updateValue(value) {
       this.$emit("input", value);

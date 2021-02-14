@@ -2,6 +2,10 @@ import axios from "axios";
 import Vue from "vue";
 import Vuex from "vuex";
 
+import * as type from "./types";
+
+const URL = "https://data.jsdelivr.com/v1/package/npm/";
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -10,49 +14,48 @@ export default new Vuex.Store({
     packageList: [],
     detailPackage: {},
   },
+
   mutations: {
-    setError(state, error) {
+    [type.SET_ERROR](state, error) {
       state.error = error;
     },
-    clearError(state) {
+    [type.CLEAR_ERROR](state) {
       state.error = null;
     },
-    setPackageList(state, list) {
+    [type.SET_PACKAGE_LIST](state, list) {
       state.packageList = list;
     },
-    setDetailPackageList(state, detailPackage) {
+    [type.SET_DETAIL_PACKAGE_LIST](state, detailPackage) {
       state.detailPackage = detailPackage;
     },
   },
+
   actions: {
-    async fetchPackageList({ commit }, name) {
-      commit("clearError");
+    async [type.FETCH_PACKAGE_LIST]({ commit }, name) {
       try {
-        const res = await axios.get(
-          `https://data.jsdelivr.com/v1/package/npm/${name}`
-        );
+        commit(type.CLEAR_ERROR);
+        const res = await axios.get(`${URL}${name}`);
         const newArr = res.data.versions.map((ver) => {
           return { version: ver };
         });
-        commit("setPackageList", newArr);
+        commit(type.SET_PACKAGE_LIST, newArr);
       } catch (e) {
-        commit("setError", e);
-        commit("setPackageList", []);
+        commit(type.SET_ERROR, e);
+        commit(type.SET_PACKAGE_LIST, []);
       }
     },
-    async fetchDetailPackageList({ commit }, { value, version }) {
-      commit("clearError");
+    async [type.FETCH_DETAIL_PACKAGE_LIST]({ commit }, { value, version }) {
       try {
-        const res = await axios.get(
-          `https://data.jsdelivr.com/v1/package/npm/${value}@${version}`
-        );
-        commit("setDetailPackageList", res);
+        commit(type.CLEAR_ERROR);
+        const res = await axios.get(`${URL}${value}@${version}`);
+        commit(type.SET_DETAIL_PACKAGE_LIST, res);
       } catch (e) {
-        commit("setError", e);
-        commit("setPackageList", []);
+        commit(type.SET_ERROR, e);
+        commit(type.SET_PACKAGE_LIST, []);
       }
     },
   },
+
   getters: {
     getPackageList: (s) => s.packageList,
     getDetailPackageList: (s) => s.detailPackage.data,

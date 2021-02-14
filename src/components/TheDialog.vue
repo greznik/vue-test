@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  name: "TheDialog",
   props: {
     getDetailPackageList: {
       type: Object,

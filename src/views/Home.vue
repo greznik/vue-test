@@ -4,9 +4,9 @@
     <TheList
       :getDetailPackageList="getDetailPackageList"
       :getPackageList="getPackageList"
-      @dialog="dialogInfo($event)"
+      @dialog="onDialog($event)"
     />
-    <v-alert :value="!!getError" color="orange" dense outlined type="warning">
+    <v-alert :value="!!getError" color="orange" dense outlined type="warning" dismissible>
       {{ getError }}
     </v-alert>
   </div>
@@ -16,6 +16,7 @@
 import TheInput from "@/components/TheInput.vue";
 import TheList from "@/components/TheList.vue";
 import { mapActions, mapGetters } from "vuex";
+import { FETCH_PACKAGE_LIST, FETCH_DETAIL_PACKAGE_LIST } from "@/store/types";
 
 export default {
   name: "Home",
@@ -24,30 +25,37 @@ export default {
       inputValue: "",
     };
   },
-  components: {
-    TheInput,
-    TheList,
-  },
+
   methods: {
     ...mapActions({
-      fetchPackageList: "fetchPackageList",
-      fetchDetailPackageList: "fetchDetailPackageList",
+      FETCH_PACKAGE_LIST,
+      FETCH_DETAIL_PACKAGE_LIST,
     }),
+
     async onInput(value) {
-      const lowerValue = value.toLowerCase()
+      const lowerValue = value.toLowerCase();
       this.inputValue = lowerValue;
-      await this.fetchPackageList(lowerValue);
+
+      await this.FETCH_PACKAGE_LIST(lowerValue);
     },
-    async dialogInfo(version) {
+
+    async onDialog(version) {
       const data = {
         value: this.inputValue,
         version,
       };
-      await this.fetchDetailPackageList(data);
+
+      await this.FETCH_DETAIL_PACKAGE_LIST(data);
     },
   },
+
   computed: {
     ...mapGetters(["getDetailPackageList", "getPackageList", "getError"]),
+  },
+
+  components: {
+    TheInput,
+    TheList,
   },
 };
 </script>
