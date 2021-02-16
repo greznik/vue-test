@@ -30,7 +30,7 @@ export default {
         { icon: "mdi-github", url: "https://github.com/greznik" },
         { icon: "mdi-linkedin", url: "https://www.linkedin.com/in/vue/" },
         { icon: "mdi-steam", url: "https://steamcommunity.com/id/reznx/" },
-        { icon: "mdi-instagram", url: "https://www.instagram.com/donreznik/" },
+        { icon: "mdi-instagram", url: "https://www.instagram.com/reznx/" },
       ],
     };
   },
